@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema</title>
+      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.4.1-dist/css/bootstrap.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="{{ url_for('static', filename='./bootstrap-3.4.1-dist/js/bootstrap.min.js') }}"></script>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+    <style>
+  /* Note: Try to remove the following lines to see the effect of CSS positioning */
+  .affix {
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+  }
+
+  .affix + .container-fluid {
+    padding-top: 70px;
+  }
+  </style>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+
+		<div class="jumbotron noPrint">
+            <h1>--Nome do sistema (a definir) --</h1>
+            <p>-- descrição/ logomarca (a definir) --</p>
+        </div>
+        <!--nav class="navbar navbar-inverse navbar-fixed-top"-->
+        <!--<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">-->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand footnotesize" href="#">Museu Virtual</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#" title="Apresentação">Apresentação</a></li>
+                    <li><a href="#" title="História">História afro-brasileira<br>em Nepomuceno MG</a></li>
+                    <li><a href="#" title="Cultura">Cultura afro-brasileira<br>em Nepomuceno - MG</a></li>
+                    <li><a href="#" title="Escrevivência">Escrevivência: a memória afro-brasileira<br>em Nepomuceno - MG</a>
+                    <li><a href="#" title="Jogos">Jogos matemáticos<br>de origem africana</a></li></li>
+                    <li><a href="#" title="Oficinas">Oficinas</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if "usuario_logado" in session  %}
+                    <li><a href="#" title="Usuário logado"><span class="glyphicon glyphicon-user"></span>&nbsp;{{ session.usuario_logado }}</a></li>
+                    <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    {%else%}
+                    <li><a href="#" title="Não conectado"><span class="glyphicon glyphicon-minus"></span>&nbsp;</a></li>
+                    <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {%endif%}
+                </ul>
+            </div>
+        </nav>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul id="messages" class="list-unstyled">
+                {% for message in messages %}
+                    <li class="alert alert-warning">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <p>&nbsp;</p>
+        <div class="page-header">
+            <h1>{{ titulo }}</h1>
+        </div>
+        {% block conteudo %}{% endblock %}
+        <div class="panel-footer text-center noPrint">
+        Centro Federal de Educação Tecnológica de Minas Gerais Campus Nepomuceno.<br>
+            Copyright &copy; 2022. Todos os direitos reservados. <a href="{{ url_for('creditos')}}"> Créditos</a>.
+        </div>
+
+    </div>
+        <script type="text/javascript" src="{{ url_for('static', filename='jquery-3.2.1.js')}}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='app.js')}}"></script>
+
+
+  </body>
+</html>

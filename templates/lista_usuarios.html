@@ -1,0 +1,29 @@
+{% extends "sim_template.html" %}
+{% block conteudo %}
+    <a class="btn btn-primary" href="{{ url_for('novo_usuario') }}">Cadastrar novo usuário</a>
+
+        <table class="table table-striped table-responsive table-bordered">
+            <thead class="thead-default">
+                <tr>
+                    <th><i>login</i></th>
+                    <th>Nome completo</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in lista %}
+                <tr>
+                    <td>{{ i.login}}</td>
+                    <td>{{ i.nome }}</td>
+                    <td><a href="{{ url_for('editar_usuario', login=i.login) }}">Editar dados do usuário</a></td>
+                    <td><a href="{{ url_for('alterar_senha_usuario', login=i.login) }}">Alterar a senha</a></td>
+                    <td><a href="{{ url_for('deletar_usuario', login=i.login) }}">Excluir</a></td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

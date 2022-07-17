@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+{% block conteudo %}
+    <form action="{{ url_for('criar_usuario') }}" method="post">
+
+        <fieldset>
+          <div class="form-group">
+            <label for="loginUsuario">login</label>
+            <input type="text" id="loginUsuario" name="loginUsuario" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="nomeUsuario">Nome do Usuário</label>
+            <input type="text" id="nomeUsuario" name="nomeUsuario" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="senhaUsuario">Senha</label>
+            <input type="password" id="senhaUsuario" name="senhaUsuario" class="form-control">
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="tipo" value="1" checked>Usuário comum</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="tipo" value="2">Administrador</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="tipo" value="3">Híbrido</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-salvar">Salvar</button>
+          <a class="btn btn-danger" href="{{ url_for('lista_usuarios') }}">Voltar</a>
+        </fieldset>
+    </form>
+
+{% endblock %}

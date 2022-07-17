@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+{% block conteudo %}
+      <form action="{{ url_for('atualizar_senha') }}" method="post">
+
+        <fieldset>
+            <input type="hidden" name="loginUsuario" value="{{ usuario.login }}">
+          <div class="form-group">
+            <label for="loginUsuario">login</label>
+            <input type="text" id="loginUsuario" name="loginUsuario" class="form-control" value="{{ usuario.login }}" disabled>
+          </div>
+          <div class="form-group">
+            <label for="senhaUsuario">Nova senha</label>
+            <input type="password" id="senhaUsuario" name="senhaUsuario" class="form-control" placeholder="Digite a nova senha">
+          </div>
+          <div class="form-group">
+            <label for="confirmaSenhaUsuario">Confirmação da senha</label>
+            <input type="password" id="confirmaSenhaUsuario" name="confirmaSenhaUsuario" class="form-control" placeholder="Digite novamente a nova senha">
+          </div>
+          <button type="submit" class="btn btn-primary btn-salvar">Salvar</button>
+          <a class="btn btn-danger" href="{{ url_for('lista_usuarios') }}">Voltar</a>
+        </fieldset>
+      </form>
+
+{% endblock %}
